@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Prediction</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom hover effect for cards */
+        .weather-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .weather-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        /* Submit button hover */
+        .submit-btn {
+            transition: background-color 0.3s ease;
+        }
+        .submit-btn:hover {
+            background-color: #1e40af;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white shadow">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-bold text-gray-900 text-center">Weather Prediction</h1>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        <div class="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <form action="/predict" method="post" class="space-y-6">
+                <!-- First Row: Temperature and Pressure -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Temperature -->
+                    <div class="weather-card bg-white rounded-lg shadow p-6">
+                        <label for="temperature_C" class="block text-lg font-semibold text-gray-700">Temperature (°C)</label>
+                        <input type="number" min="-23.3" max="33.0" step="0.1" name="temperature_C" id="temperature_C" required
+                               class="mt-2 w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <!-- Pressure -->
+                    <div class="weather-card bg-white rounded-lg shadow p-6">
+                        <label for="pressure_kpa" class="block text-lg font-semibold text-gray-700">Atmospheric Pressure (kPa)</label>
+                        <input type="number" min="99.015" max="103.135" step="0.001" name="pressure_kpa" id="pressure_kpa" required
+                               class="mt-2 w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                </div>
+
+                <!-- Second Row: Humidity and Wind Speed -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Humidity -->
+                    <div class="weather-card bg-white rounded-lg shadow p-6">
+                        <label for="relative_humidity" class="block text-lg font-semibold text-gray-700">Relative Humidity (%)</label>
+                        <input type="number" min="18" max="100" step="1" name="relative_humidity" id="relative_humidity" required
+                               class="mt-2 w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <!-- Wind Speed -->
+                    <div class="weather-card bg-white rounded-lg shadow p-6">
+                        <label for="wind_speed_kmph" class="block text-lg font-semibold text-gray-700">Wind Speed (km/h)</label>
+                        <input type="number" min="0.0" max="36.5" step="0.1" name="wind_speed_kmph" id="wind_speed_kmph" required
+                               class="mt-2 w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                </div>
+
+                <!-- Third Row: Visibility and Hour -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Visibility -->
+                    <div class="weather-card bg-white rounded-lg shadow p-6">
+                        <label for="visibility_km" class="block text-lg font-semibold text-gray-700">Visibility (km)</label>
+                        <input type="number" min="0.2" max="48.3" step="0.1" name="visibility_km" id="visibility_km" required
+                               class="mt-2 w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <!-- Hour -->
+                    <div class="weather-card bg-white rounded-lg shadow p-6">
+                        <label for="hour" class="block text-lg font-semibold text-gray-700">Hour (0-23)</label>
+                        <input type="number" min="0" max="23" step="1" name="hour" id="hour" required
+                               class="mt-2 w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="text-center">
+                    <button type="submit" class="submit-btn bg-blue-600 text-white font-semibold py-2 px-6 rounded-md hover:bg-blue-700">
+                        Predict Weather
+                    </button>
+                </div>
+            </form>
+
+            <!-- Prediction Output -->
+            <div class="mt-8 text-center">
+                <h3 class="text-2xl font-bold text-red-600">{{ prediction_text }}</h3>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white shadow mt-auto">
+        <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-600 text-lg">Weather Prediction App &copy; 2025</p>
+        </div>
+    </footer>
+</body>
+</html>

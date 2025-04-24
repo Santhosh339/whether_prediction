@@ -1,0 +1,92 @@
+output=rain
+Temperature (°C): 12.0
+Atmospheric Pressure (kPa): 99.015
+Relative Humidity (%): 100
+Wind Speed (km/h): 25.0
+Visibility (km): 5.0
+Hour: 18
+
+
+
+Test Case 1: Likely Clear Weather
+Temperature (°C): 20.0
+Atmospheric Pressure (kPa): 101.5
+Relative Humidity (%): 50
+Wind Speed (km/h): 10.0
+Visibility (km): 40.0
+Hour: 12
+Reason: High visibility, moderate temperature, and low humidity suggest clear conditions.
+
+
+
+Test Case 2: Likely Fog Weather
+Temperature (°C): 5.0
+Atmospheric Pressure (kPa): 100.8
+Relative Humidity (%): 95
+Wind Speed (km/h): 5.0
+Visibility (km): 2.0
+Hour: 6
+Reason: High humidity and low visibility are strong indicators of fog, where your model performed well (F1-score 0.90).
+
+
+Test Case 3: Likely Rain Weather
+Temperature (°C): 10.0
+Atmospheric Pressure (kPa): 100.0
+Relative Humidity (%): 90
+Wind Speed (km/h): 15.0
+Visibility (km): 10.0
+Hour: 15
+Reason: High humidity and moderate visibility suggest rain, though your model’s low recall (0.35) for Rain may make this less reliable.
+Expected Outputs
+Based on your train_model.py output (Random Forest, 73% accuracy, strong Fog performance, weaker Rain recall), here are the expected outputs for each test case. Note that predictions may vary slightly due to model randomness or data specifics, but these are the most likely outcomes:
+
+
+
+
+Predicted Weather: Clear
+Temperature (°C): -9.0
+Atmospheric Pressure (kPa): 100.83
+Relative Humidity (%): 63
+Wind Speed (km/h): 13.0
+Visibility (km): 25.0
+Hour: 21
+Source: From 1/5/2012 21:00 (Weather: Clear)
+
+Predicted Weather: Cloudy  it is rain
+Temperature (°C): 4.4
+Atmospheric Pressure (kPa): 99.32
+Relative Humidity (%): 84
+Wind Speed (km/h): 24.0
+Visibility (km): 19.3
+Hour: 22
+Source: From 1/1/2012 22:00 (Weather: Cloudy, after Rain Showers)
+
+
+Predicted Weather: Fog
+Temperature (°C): -1.8
+Atmospheric Pressure (kPa): 101.24
+Relative Humidity (%): 86
+Wind Speed (km/h): 4.0
+Visibility (km): 8.0
+Hour: 0
+Source: From 1/1/2012 0:00 (Weather: Fog)
+
+
+Predicted Weather: Rain
+Temperature (°C): 3.1
+Atmospheric Pressure (kPa): 99.68
+Relative Humidity (%): 88
+Wind Speed (km/h): 15.0
+Visibility (km): 12.9
+Hour: 19
+Source: From 1/1/2012 19:00 (Weather: Rain)
+Note: Rain recall is low (0.35), so you may need the updated train_model.py with class weights (provided below).
+
+Predicted Weather: Snow
+Temperature (°C): -8.8
+Atmospheric Pressure (kPa): 100.32
+Relative Humidity (%): 79
+Wind Speed (km/h): 4.0
+Visibility (km): 9.7
+Hour: 0
+Source: From 1/5/2012 0:00 (Weather: Snow)
